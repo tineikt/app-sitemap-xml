@@ -18,8 +18,13 @@ function recipeRequest(recipeId) {
 
         if(result && result.image && result.image.url){
             var recipeImageUrl = result.image.url;
-            recipeImageUrl = recipeImageUrl.replace(/%width%/, parseInt(result.image.sourceWidth/3));
-            recipeImageUrl = recipeImageUrl.replace(/%height%/, parseInt(result.image.sourceHeight/3));
+            if(result.image.sourceWidth >= result.image.sourceHeight){
+                recipeImageUrl = recipeImageUrl.replace(/%width%/, result.image.sourceWidth >= 1000 ? 1000 : result.image.sourceWidth);
+                recipeImageUrl = recipeImageUrl.replace(/%height%/, '');
+            }else{
+                recipeImageUrl = recipeImageUrl.replace(/%height%/, result.image.sourceHeight >= 1000 ? 1000 : result.image.sourceHeight);
+                recipeImageUrl = recipeImageUrl.replace(/%width%/, '');
+            }
 
             return recipeImageUrl;
         }
