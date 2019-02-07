@@ -6,6 +6,12 @@ For more information, check out Enonics repo: https://github.com/enonic/app-site
 
 Fork is based on v1.1.1.
 
+## Good to know
+Enabling ODB integration makes the generation of sitemap.xml take A LOT more time! 
+- Maybe look into batch fetching image URLs from ODB with a list of recipeIDs?
+
+Cache is king!
+
 ## Changelog
 
 ### Version 1.1.2 - Tine ODB integration
