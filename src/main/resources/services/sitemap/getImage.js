@@ -18,8 +18,8 @@ function recipeRequest(recipeId) {
 
         if(result && result.image && result.image.url){
             var recipeImageUrl = result.image.url;
-            recipeImageUrl = recipeImageUrl.replace(/%width%/, result.image.sourceWidth);
-            recipeImageUrl = recipeImageUrl.replace(/%height%/, result.image.sourceHeight);
+            recipeImageUrl = recipeImageUrl.replace(/%width%/, parseInt(result.image.sourceWidth/3));
+            recipeImageUrl = recipeImageUrl.replace(/%height%/, parseInt(result.image.sourceHeight/3));
 
             return recipeImageUrl;
         }
