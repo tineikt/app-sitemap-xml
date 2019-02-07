@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
   <config>
+    <item-set name="siteMapODB">
+      <label>Oppskriftsdatabasen</label>
+      <items>
+        <input name="getDataFromODB" type="CheckBox">
+          <label>Fetch data from ODB (add images to sitemap.xml)</label>
+          <occurrences minimum="1" maximum="1"/>
+        </input>
+        <input name="odbUrl" type="TextLine">
+          <label>ODB URL</label>
+          <occurrences maximum="1" minimum="1"/>
+        </input>
+        <input name="odbToken" type="TextLine">
+          <label>ODB Token</label>
+          <occurrences maximum="1" minimum="1"/>
+        </input>
+      </items>
+    </item-set>
     <item-set name="siteMap">
       <label>Mappings</label>
       <occurrences maximum="0" minimum="0"/>

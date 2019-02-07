@@ -11,7 +11,8 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9  http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
         xmlns:stk="http://www.enonic.com/cms/xslt/stk"
-        xmlns:idebanken="http://www.idebanken.org">
+        xmlns:idebanken="http://www.idebanken.org"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
     <!-- Apparently this line is ignored? XML declaration must be added manually in template match="/" -->
     <xsl:output encoding="UTF-8" indent="no" method="xml" omit-xml-declaration="no"/>
@@ -28,6 +29,11 @@
             <loc>
                 <xsl:value-of select="url"/>
             </loc>
+            <xsl:if test="imageUrl">
+                <image:image>
+                    <image:loc><xsl:value-of select="imageUrl"/></image:loc>
+                </image:image>
+            </xsl:if>
             <lastmod>
                 <xsl:value-of select="substring-before(modifiedTime, 'T')"/>
             </lastmod>

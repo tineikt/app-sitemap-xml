@@ -2,7 +2,8 @@ var libs = {
     portal: require('/lib/xp/portal'),
     content: require('/lib/xp/content'),
     util: require('/lib/enonic/util'),
-    xslt: require('/lib/xp/xslt')
+    xslt: require('/lib/xp/xslt'),
+    recipeImage: require('./getImage')
 };
 
 var globals = {
@@ -67,6 +68,8 @@ function handleGet(req) {
     for(var i = 0 ; i < result.hits.length; i++ ) {
 		  var item = {};
         if (result.hits[i].type) {
+            var recipeId = result.hits[i].data.recipeId;
+            item.imageUrl = siteConfig.siteMapODB.getDataFromODB && recipeId ? libs.recipeImage.getImageForRecipeId(recipeId) : null;
             item.changeFreq = changefreq[result.hits[i].type];
             item.priority = priority[result.hits[i].type];
 				item.url = libs.portal.pageUrl({
