@@ -1,4 +1,4 @@
-# Sitemap.xml -
+# Sitemap.xml
 
 This app is a fork of app-sitemap-xml from Enonic. It's modified to add support for images in sitemap (and later on maybe more stuff from ODB).
 

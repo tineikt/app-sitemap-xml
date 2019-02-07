@@ -69,7 +69,7 @@ function handleGet(req) {
 		  var item = {};
         if (result.hits[i].type) {
             var recipeId = result.hits[i].data.recipeId;
-            item.imageUrl = siteConfig.siteMapODB.getDataFromODB && recipeId ? libs.recipeImage.getImageForRecipeId(recipeId) : null;
+            item.imageUrl = siteConfig && siteConfig.siteMapODB && siteConfig.siteMapODB.getDataFromODB && recipeId ? libs.recipeImage.getImageForRecipeId(recipeId) : null;
             item.changeFreq = changefreq[result.hits[i].type];
             item.priority = priority[result.hits[i].type];
 				item.url = libs.portal.pageUrl({
