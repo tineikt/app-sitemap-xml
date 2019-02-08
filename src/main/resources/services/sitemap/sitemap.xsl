@@ -32,6 +32,9 @@
             <xsl:if test="imageUrl">
                 <image:image>
                     <image:loc><xsl:value-of select="imageUrl"/></image:loc>
+                    <xsl:if test="imageTitle">
+                        <image:title><xsl:value-of select="imageTitle"/></image:title>
+                    </xsl:if>
                 </image:image>
             </xsl:if>
             <lastmod>
