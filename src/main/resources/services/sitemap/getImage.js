@@ -21,10 +21,10 @@ function recipeRequest(recipeId) {
 
             if(result.image.sourceWidth >= result.image.sourceHeight){
                 recipeImageUrl = recipeImageUrl.replace(/%width%/, result.image.sourceWidth >= 1000 ? 1000 : result.image.sourceWidth);
-                recipeImageUrl = recipeImageUrl.replace(/h_%height%/, '');
+                recipeImageUrl = recipeImageUrl.replace(/h_%height%,/, '');
             }else{
                 recipeImageUrl = recipeImageUrl.replace(/%height%/, result.image.sourceHeight >= 1000 ? 1000 : result.image.sourceHeight);
-                recipeImageUrl = recipeImageUrl.replace(/w_%width%/, '');
+                recipeImageUrl = recipeImageUrl.replace(/w_%width%,/, '');
             }
 
             return { imageUrl: recipeImageUrl, imageTitle: result.image.title };
