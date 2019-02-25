@@ -2,7 +2,7 @@ var portal = require('/lib/xp/portal');
 var httpClientLib = require('/lib/xp/http-client');
 var siteConfig = null;
 
-exports.getImageForRecipeId = function(recipeId){
+exports.getImageAndTitleForRecipeId = function(recipeId){
     if(siteConfig == null){
         siteConfig = portal.getSiteConfig();
     }
@@ -18,10 +18,16 @@ function recipeRequest(recipeId) {
 
         if(result && result.image && result.image.url){
             var recipeImageUrl = result.image.url;
-            recipeImageUrl = recipeImageUrl.replace(/%width%/, result.image.sourceWidth);
-            recipeImageUrl = recipeImageUrl.replace(/%height%/, result.image.sourceHeight);
 
-            return recipeImageUrl;
+            if(result.image.sourceWidth >= result.image.sourceHeight){
+                recipeImageUrl = recipeImageUrl.replace(/%width%/, result.image.sourceWidth >= 1000 ? 1000 : result.image.sourceWidth);
+                recipeImageUrl = recipeImageUrl.replace(/h_%height%,/, '');
+            }else{
+                recipeImageUrl = recipeImageUrl.replace(/%height%/, result.image.sourceHeight >= 1000 ? 1000 : result.image.sourceHeight);
+                recipeImageUrl = recipeImageUrl.replace(/w_%width%,/, '');
+            }
+
+            return { imageUrl: recipeImageUrl, imageTitle: result.image.title };
         }
     }
     return null;

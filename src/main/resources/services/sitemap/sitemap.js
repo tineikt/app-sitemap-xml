@@ -60,7 +60,7 @@ function handleGet(req) {
 				  }
 		      }
 			 }
-		  }
+    }
     });
 
 	 // Go through the results and add the corresponding settings for each match.
@@ -68,15 +68,21 @@ function handleGet(req) {
     for(var i = 0 ; i < result.hits.length; i++ ) {
 		  var item = {};
         if (result.hits[i].type) {
-            var recipeId = result.hits[i].data.recipeId;
-            item.imageUrl = siteConfig && siteConfig.siteMapODB && siteConfig.siteMapODB.getDataFromODB && recipeId ? libs.recipeImage.getImageForRecipeId(recipeId) : null;
-            item.changeFreq = changefreq[result.hits[i].type];
-            item.priority = priority[result.hits[i].type];
+            var hit = result.hits[i];
+            var recipeId = hit.data.recipeId;
+            var recipeImageData = siteConfig && siteConfig.siteMapODB && siteConfig.siteMapODB.getDataFromODB && recipeId ? libs.recipeImage.getImageAndTitleForRecipeId(recipeId) : null;
+            item.imageUrl = recipeImageData && recipeImageData.imageUrl ? recipeImageData.imageUrl : null;
+            if(!recipeId && hit.data && hit.data.media && hit.data.media.mediaImage && hit.data.media.mediaImage.imgSrc) {
+                item.imageUrl = libs.portal.imageUrl({ id:hit.data.media.mediaImage.imgSrc, type: 'absolute', scale: 'max(1000)' });
+            }
+            item.imageTitle = recipeImageData && recipeImageData.imageTitle ? recipeImageData.imageTitle : null;
+            item.changeFreq = changefreq[hit.type];
+            item.priority = priority[hit.type];
 				item.url = libs.portal.pageUrl({
-					id: result.hits[i]._id,
+					id: hit._id,
 					type: 'absolute'
 				});
-				item.modifiedTime = result.hits[i].modifiedTime;
+				item.modifiedTime = hit.modifiedTime;
 				items.push(item);
         } else {
             result.hits = null;
