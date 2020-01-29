@@ -45,6 +45,22 @@
         </input>
       </items>
     </item-set>
+
+    <item-set name="urlReplacement">
+      <label>Replace part of the url</label>
+      <help-text>Only needed if the url is different in production</help-text>
+      <occurrences maximum="1" minimum="0"/>
+      <items>
+        <input name="replaceFrom" type="TextLine">
+          <label>Part of url to replace </label>
+          <occurrences maximum="1" minimum="1"/>
+        </input>
+        <input name="replaceTo" type="TextLine">
+          <label>Replacement text for the url</label>
+          <occurrences maximum="1" minimum="0"/>
+        </input>
+      </items>
+    </item-set>
   </config>
   <mappings>
     <mapping controller="/services/sitemap/sitemap.js" order="10">
