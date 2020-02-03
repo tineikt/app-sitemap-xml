@@ -20,9 +20,9 @@ apply plugin: 'maven'
 
 app {
     name = project.appName
-    displayName = 'Sitemap XML'
-    vendorName = 'Enonic AS'
-    vendorUrl = 'http://enonic.com'
+    displayName = 'Sitemap XML - Forked by Tine - Replace Url'
+    vendorName = 'TINE'
+    vendorUrl = 'http://www.tine.no'
 }
 
 dependencies {
